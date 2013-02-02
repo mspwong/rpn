@@ -13,15 +13,6 @@ class RPN
   end
 
   def self.operate(args, op_index)
-    case args[op_index]
-      when '+'
-        args[op_index-2] + args[op_index-1]
-      when '-'
-        args[op_index-2] - args[op_index-1]
-      when '*'
-        args[op_index-2] * args[op_index-1]
-      when '/'
-        args[op_index-2] / args[op_index-1]
-    end
+    args[op_index-2].send args[op_index], args[op_index-1]
   end
 end
