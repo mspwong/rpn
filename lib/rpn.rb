@@ -2,6 +2,7 @@ class RPN
 
   def self.evaluate(*args)
     stack = []
+
     args.each do |arg|
       if ['+', '-', '*', '/', '%', '**', '<', '<=>'].include? arg
         operands = stack.pop(2)
@@ -11,6 +12,7 @@ class RPN
         stack.push(arg)
       end
     end
+
     stack.pop
   end
 end
