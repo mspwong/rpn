@@ -1,9 +1,8 @@
 class RPN
 
-  def evaluate(*args)
+  def self.evaluate(*args)
     stack = []
     args.each do |arg|
-      puts "start of iteration, stack:  #{stack}"
       if ['+', '-', '*', '/', '%', '**', '<', '<=>'].include? arg
         operands = stack.pop(2)
         result = operands.first.to_f.send arg, operands.last
