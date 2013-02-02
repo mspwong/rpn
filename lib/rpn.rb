@@ -1,18 +1,17 @@
 class RPN
 
   def evaluate(*args)
-    op_index = operator_index(args)
-    operate(args, op_index)
-  end
-
-  def operator_index(args)
-    ['+', '-', '*', '/', '%', '**', '<', '<=>'].each do |op|
-      index = args.index(op)
-      return index unless index.nil?
+    stack = []
+    args.each do |arg|
+      puts "start of iteration, stack:  #{stack}"
+      if ['+', '-', '*', '/', '%', '**', '<', '<=>'].include? arg
+        operands = stack.pop(2)
+        result = operands.first.to_f.send arg, operands.last
+        stack.push(result)
+      else
+        stack.push(arg)
+      end
     end
-  end
-
-  def operate(args, op_index)
-    args[op_index-2].to_f.send args[op_index], args[op_index-1]
+    stack.pop
   end
 end
