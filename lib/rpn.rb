@@ -5,11 +5,11 @@ class RPN
 
     args.each do |arg|
       unless ['+', '-', '*', '/', '%', '**', '<', '<=>'].include? arg
-        stack.push(arg)
+        stack.push arg
       else
-        operands = stack.pop(2)
-        result = eval(operands.first.to_f.to_s + arg + operands.last.to_s)
-        stack.push(result)
+        operands = stack.pop 2
+        result = operands.first.to_f.send arg, operands.last
+        stack.push result
       end
     end
 
