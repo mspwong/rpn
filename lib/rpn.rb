@@ -8,7 +8,7 @@ class RPN
         stack.push(arg)
       else
         operands = stack.pop(2)
-        result = operands.first.to_f.send arg, operands.last
+        result = eval(operands.first.to_f.to_s + arg + operands.last.to_s)
         stack.push(result)
       end
     end
